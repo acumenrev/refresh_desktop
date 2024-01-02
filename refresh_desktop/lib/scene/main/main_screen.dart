@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:refresh_desktop/common/ui/side_menu/side_menu.dart';
 import 'package:refresh_desktop/common/ui/side_menu/side_menu_controller.dart';
+import 'package:refresh_desktop/scene/local_folder/local_folder_controller.dart';
+import 'package:refresh_desktop/scene/local_folder/local_folder_screen.dart';
 
 class MainScreen extends StatelessWidget {
   final SideMenuController sideMenuController;
@@ -33,6 +36,8 @@ class MainScreen extends StatelessWidget {
     return Expanded(
       child: Container(
         color: Colors.green,
+        child:
+            LocalFolderScreen(controller: Get.put(LocalFolderController(""))),
       ),
     );
   }
