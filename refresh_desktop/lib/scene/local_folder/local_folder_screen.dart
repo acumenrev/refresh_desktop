@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:refresh_desktop/gen/assets.gen.dart';
 import 'package:refresh_desktop/scene/local_folder/local_folder_controller.dart';
+import 'package:refresh_desktop/scene/local_folder/local_folder_item.dart';
 
 class LocalFolderScreen extends StatelessWidget {
   final LocalFolderController controller;
@@ -19,7 +20,7 @@ class LocalFolderScreen extends StatelessWidget {
         // picker
         _buildPickerSection(),
         // grid display all folders
-        _buildGridPhotos()
+        _buildContentView()
       ],
     );
   }
@@ -62,38 +63,38 @@ class LocalFolderScreen extends StatelessWidget {
     );
   }
 
-  _buildGridPhotos() {
+  _buildContentView() {
     return Expanded(
         child: SingleChildScrollView(
-      controller: _scrollController,
-      scrollDirection: Axis.vertical,
-      child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: GridView.count(
-              crossAxisCount: 3,
-              crossAxisSpacing: 5.0,
-              mainAxisSpacing: 5.0,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              children: List.generate(20, (index) {
-                return Padding(
-                  padding: EdgeInsets.all(5.0),
-                  child: Container(
-                    child: AppAssets.resources.images.unsplash
-                        .image(width: 50, height: 50),
-                    padding: EdgeInsets.all(20.0),
-                    height: 135.0,
-                    width: 135.0,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 1.0,
-                        color: Color(0xFFF9AD16),
-                      ),
-                    ),
-                  ),
-                );
-              }))),
-    ));
+            controller: _scrollController,
+            scrollDirection: Axis.vertical,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: _buildGridPhotosView(),
+            )));
+  }
+
+  _buildGridPhotosView() {
+    return Obx(() {
+      return GridView.count(
+          crossAxisCount: 3,
+          crossAxisSpacing: 5.0,
+          mainAxisSpacing: 5.0,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          children:
+              List.generate(controller.directoryImagePaths.length, (index) {
+            return Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: LocalFolderItem(
+                imagePath: controller.directoryImagePaths[index],
+                isNetworkImage: false,
+                placeholderImage: AppAssets.resources.images.folder
+                    .image(width: 50, height: 50),
+              ),
+            );
+          }));
+    });
   }
 
   _selectFolderHandler() async {

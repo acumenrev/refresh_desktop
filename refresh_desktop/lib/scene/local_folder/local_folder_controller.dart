@@ -49,7 +49,7 @@ class LocalFolderController extends BaseController {
     }
     directoryImagePaths.value = imagePaths;
     debugPrint(
-      "image paths: $imagePaths",
+      "${imagePaths.length} image paths: $imagePaths",
     );
   }
 }
