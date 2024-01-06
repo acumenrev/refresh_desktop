@@ -40,6 +40,19 @@ class LocalFolderScreen extends StatelessWidget {
           const SizedBox(
             width: 16,
           ),
+          // checkbox
+          Obx(() {
+            return Checkbox(
+                value: controller.isIncludeSubfolders.value,
+                onChanged: (newValue) {
+                  controller.isIncludeSubfolders.value = newValue ?? false;
+                });
+          }),
+          const SizedBox(width: 2.0),
+          const Text('Include subfolders'),
+          const SizedBox(
+            width: 6.0,
+          ),
           // label to display selected directory path
           Expanded(
             child: Container(

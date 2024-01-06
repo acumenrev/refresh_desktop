@@ -7,6 +7,7 @@ import 'dart:io';
 class LocalFolderController extends BaseController {
   late RxString selectedDirectory;
   RxList directoryImagePaths = [].obs;
+  RxBool isIncludeSubfolders = false.obs;
 
   LocalFolderController(String directory) {
     selectedDirectory = directory.obs;
@@ -17,6 +18,9 @@ class LocalFolderController extends BaseController {
     selectedDirectory.listen((p0) {
       // directory change
       _getImagesInDirectory(p0);
+    });
+    isIncludeSubfolders.listen((p0) {
+      _getImagesInDirectory(selectedDirectory.value);
     });
   }
 
@@ -30,7 +34,8 @@ class LocalFolderController extends BaseController {
     // You can also use getApplicationDocumentsDirectory() or getExternalStorageDirectory()
 
     if (directory.existsSync()) {
-      List<FileSystemEntity> files = directory.listSync(recursive: true);
+      List<FileSystemEntity> files =
+          directory.listSync(recursive: isIncludeSubfolders.value);
 
       for (FileSystemEntity file in files) {
         if (file is File) {
@@ -48,8 +53,5 @@ class LocalFolderController extends BaseController {
       }
     }
     directoryImagePaths.value = imagePaths;
-    debugPrint(
-      "${imagePaths.length} image paths: $imagePaths",
-    );
   }
 }
