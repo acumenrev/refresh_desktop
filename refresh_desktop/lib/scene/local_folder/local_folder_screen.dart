@@ -94,7 +94,7 @@ class LocalFolderScreen extends StatelessWidget {
           crossAxisSpacing: 5.0,
           mainAxisSpacing: 5.0,
           shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           children:
               List.generate(controller.directoryImagePaths.length, (index) {
             return Padding(

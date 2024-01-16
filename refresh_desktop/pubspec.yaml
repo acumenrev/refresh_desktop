@@ -40,6 +40,9 @@ dependencies:
   path_provider: ^2.1.1
   window_manager: ^0.3.7
   cached_network_image: ^3.3.1
+  flutter_dotenv: ^5.1.0
+  http: ^1.1.2
+  easy_debounce: ^2.0.3
 
 dev_dependencies:
   flutter_test:
@@ -91,6 +94,7 @@ flutter:
   assets:
     - resources/images/folder.png
     - resources/images/unsplash.png
+    - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

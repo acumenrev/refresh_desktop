@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:refresh_desktop/common/base_controller.dart';
 import 'package:path/path.dart' as path;

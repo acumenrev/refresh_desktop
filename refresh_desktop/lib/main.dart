@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/route_manager.dart';
 import 'package:refresh_desktop/common/ui/side_menu/side_menu_controller.dart';
 import 'package:refresh_desktop/scene/main/main_screen.dart';
@@ -28,6 +29,8 @@ void main() async {
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
     WindowManager.instance.setMinimumSize(const Size(800, 600));
   }
+
+  await dotenv.load(fileName: ".env");
 
   runApp(GetMaterialApp(
     home: MainScreen(
