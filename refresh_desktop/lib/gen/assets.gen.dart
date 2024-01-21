@@ -22,12 +22,16 @@ class $ResourcesImagesGen {
   AssetGenImage get folder =>
       const AssetGenImage('resources/images/folder.png');
 
+  /// File path: resources/images/placeholder_image.png
+  AssetGenImage get placeholderImage =>
+      const AssetGenImage('resources/images/placeholder_image.png');
+
   /// File path: resources/images/unsplash.png
   AssetGenImage get unsplash =>
       const AssetGenImage('resources/images/unsplash.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [folder, unsplash];
+  List<AssetGenImage> get values => [folder, placeholderImage, unsplash];
 }
 
 class AppAssets {

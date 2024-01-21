@@ -7,7 +7,7 @@ import 'package:refresh_desktop/scene/unsplash/unsplash_controller.dart';
 class UnsplashScreen extends StatelessWidget {
   final UnsplashController controller;
   final _scrollController = ScrollController();
-  TextEditingController _txtSearchController = TextEditingController();
+  final TextEditingController _txtSearchController = TextEditingController();
   UnsplashScreen({super.key, required this.controller}) {
     _addObservers();
   }
@@ -61,6 +61,7 @@ class UnsplashScreen extends StatelessWidget {
                       isNetworkImage: true,
                       placeholderImage: AppAssets.resources.images.folder
                           .image(width: 50, height: 50),
+                      onTap: (value) {},
                     ),
                   );
                 }));

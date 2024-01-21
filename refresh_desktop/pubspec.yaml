@@ -43,6 +43,8 @@ dependencies:
   flutter_dotenv: ^5.1.0
   http: ^1.1.2
   easy_debounce: ^2.0.3
+  desktop_wallpaper_set: ^0.0.3
+  workmanager: ^0.5.2
 
 dev_dependencies:
   flutter_test:
@@ -94,6 +96,7 @@ flutter:
   assets:
     - resources/images/folder.png
     - resources/images/unsplash.png
+    - resources/images/placeholder_image.png
     - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see

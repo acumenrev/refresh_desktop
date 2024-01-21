@@ -7,6 +7,10 @@ class LocalFolderController extends BaseController {
   late RxString selectedDirectory;
   RxList directoryImagePaths = [].obs;
   RxBool isIncludeSubfolders = false.obs;
+  RxList loadedImagePaths = [].obs;
+  int offset = 0;
+  final int limit = 40;
+  bool canLoadMore = true;
 
   LocalFolderController(String directory) {
     selectedDirectory = directory.obs;
@@ -21,6 +25,32 @@ class LocalFolderController extends BaseController {
     isIncludeSubfolders.listen((p0) {
       _getImagesInDirectory(selectedDirectory.value);
     });
+  }
+
+  loadMore() {
+    if (canLoadMore == false) {
+      return;
+    }
+    offset = offset + limit;
+    if (offset > directoryImagePaths.length) {
+      offset = directoryImagePaths.length - 1;
+    }
+    _loadImages();
+    canLoadMore = (directoryImagePaths.length - offset > limit);
+  }
+
+  _refresh() {
+    offset = limit;
+    _loadImages();
+  }
+
+  _loadImages() {
+    if (offset > directoryImagePaths.length) {
+      return;
+    }
+
+    loadedImagePaths
+        .addAll(directoryImagePaths.sublist(loadedImagePaths.length, offset));
   }
 
   _getImagesInDirectory(String directoryPath) async {
@@ -52,5 +82,6 @@ class LocalFolderController extends BaseController {
       }
     }
     directoryImagePaths.value = imagePaths;
+    _refresh();
   }
 }

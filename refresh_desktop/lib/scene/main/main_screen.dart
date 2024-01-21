@@ -32,7 +32,7 @@ class MainScreen extends StatelessWidget {
 
   _buildSideMenu() {
     return SizedBox(
-        width: 150, child: SideMenu(controller: sideMenuController));
+        width: 300, child: SideMenu(controller: sideMenuController));
   }
 
   _buildMainContent() {

@@ -1,14 +1,31 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:refresh_desktop/common/managers/app_utils.dart';
 import 'package:refresh_desktop/gen/assets.gen.dart';
 import 'package:refresh_desktop/scene/local_folder/local_folder_controller.dart';
 import 'package:refresh_desktop/scene/local_folder/local_folder_item.dart';
 
 class LocalFolderScreen extends StatelessWidget {
   final LocalFolderController controller;
-  LocalFolderScreen({super.key, required this.controller});
+  LocalFolderScreen({super.key, required this.controller}) {
+    _addObservers();
+  }
+
   final ScrollController _scrollController = ScrollController();
+
+  _addObservers() {
+    _scrollController.addListener(_scrollListener);
+  }
+
+  void _scrollListener() {
+    if (_scrollController.offset >=
+            _scrollController.position.maxScrollExtent &&
+        !_scrollController.position.outOfRange) {
+      controller.loadMore();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return _setupUI();
@@ -95,15 +112,17 @@ class LocalFolderScreen extends StatelessWidget {
           mainAxisSpacing: 5.0,
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
-          children:
-              List.generate(controller.directoryImagePaths.length, (index) {
+          children: List.generate(controller.loadedImagePaths.length, (index) {
             return Padding(
               padding: const EdgeInsets.all(5.0),
               child: LocalFolderItem(
-                imagePath: controller.directoryImagePaths[index],
+                imagePath: controller.loadedImagePaths[index],
                 isNetworkImage: false,
                 placeholderImage: AppAssets.resources.images.folder
                     .image(width: 50, height: 50),
+                onTap: (value) {
+                  AppUtils.setDesktopWallpaper(value);
+                },
               ),
             );
           }));

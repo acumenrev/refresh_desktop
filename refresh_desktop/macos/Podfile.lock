@@ -1,4 +1,6 @@
 PODS:
+  - desktop_wallpaper_set (0.0.1):
+    - FlutterMacOS
   - FlutterMacOS (1.0.0)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
@@ -15,6 +17,7 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
+  - desktop_wallpaper_set (from `Flutter/ephemeral/.symlinks/plugins/desktop_wallpaper_set/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
   - path_provider_foundation (from `Flutter/ephemeral/.symlinks/plugins/path_provider_foundation/darwin`)
   - screen_retriever (from `Flutter/ephemeral/.symlinks/plugins/screen_retriever/macos`)
@@ -26,6 +29,8 @@ SPEC REPOS:
     - FMDB
 
 EXTERNAL SOURCES:
+  desktop_wallpaper_set:
+    :path: Flutter/ephemeral/.symlinks/plugins/desktop_wallpaper_set/macos
   FlutterMacOS:
     :path: Flutter/ephemeral
   path_provider_foundation:
@@ -38,6 +43,7 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/window_manager/macos
 
 SPEC CHECKSUMS:
+  desktop_wallpaper_set: 24a3b4dbb6e44c0021907396f4d6589bb53eb94b
   FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
