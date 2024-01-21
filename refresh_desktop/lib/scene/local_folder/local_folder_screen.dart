@@ -20,7 +20,7 @@ class LocalFolderScreen extends StatelessWidget {
 
   void _scrollListener() {
     if (_scrollController.offset >=
-            _scrollController.position.maxScrollExtent &&
+            _scrollController.position.maxScrollExtent - 80 &&
         !_scrollController.position.outOfRange) {
       controller.loadMore();
     }

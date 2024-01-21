@@ -9,7 +9,7 @@ class LocalFolderController extends BaseController {
   RxBool isIncludeSubfolders = false.obs;
   RxList loadedImagePaths = [].obs;
   int offset = 0;
-  final int limit = 40;
+  final int limit = 30;
   bool canLoadMore = true;
 
   LocalFolderController(String directory) {
